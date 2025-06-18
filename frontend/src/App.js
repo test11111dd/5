@@ -1,54 +1,1307 @@
-import { useEffect } from "react";
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+import './App.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+// Blog articles data (expanded to 10 articles)
+const blogArticles = [
+  {
+    id: 1,
+    title: "How to Protect Your Crypto in 2025",
+    date: "March 15, 2025",
+    excerpt: "Essential security practices every crypto holder should know to safeguard their digital assets from evolving threats in the Web3 ecosystem.",
+    image: "https://images.pexels.com/photos/6763964/pexels-photo-6763964.jpeg",
+    content: `
+      <h2>Essential Crypto Security Practices for 2025</h2>
+      
+      <p>As the cryptocurrency landscape continues to evolve, so do the threats facing digital asset holders. In 2025, protecting your crypto requires a multi-layered approach that combines traditional security practices with cutting-edge protection strategies.</p>
+      
+      <h3>1. Hardware Wallets: Your First Line of Defense</h3>
+      <p>Hardware wallets remain the gold standard for crypto storage. Devices like Ledger Nano X and Trezor Model T provide offline storage that keeps your private keys away from internet-connected devices. In 2025, look for wallets with biometric authentication and air-gapped transaction signing.</p>
+      
+      <h3>2. Multi-Factor Authentication (MFA)</h3>
+      <p>Never rely on SMS-based 2FA. Use authenticator apps like Google Authenticator or hardware-based solutions like YubiKey. For added security, consider using multiple authentication methods on critical accounts.</p>
+      
+      <h3>3. Smart Contract Auditing</h3>
+      <p>Before interacting with any DeFi protocol or smart contract, check if it has been audited by reputable firms. Use tools like DeFiSafety and CertiK to verify the security ratings of protocols you plan to use.</p>
+      
+      <h3>4. Insurance Coverage</h3>
+      <p>Crypto insurance is no longer optional in 2025. Platforms like BitSafe offer comprehensive coverage for individual users, protecting against hacks, scams, and smart contract failures. Consider it an essential part of your crypto security stack.</p>
+      
+      <h3>5. Regular Security Audits</h3>
+      <p>Conduct quarterly reviews of your security setup. Update passwords, review connected applications, and ensure your backup phrases are secure and accessible only to you.</p>
+      
+      <p><strong>Remember:</strong> The cost of security measures is always less than the cost of losing your crypto assets. Stay vigilant, stay protected.</p>
+    `
+  },
+  {
+    id: 2,
+    title: "Case Study: $30k Phishing Hack Recovered with BitSafe",
+    date: "March 12, 2025",
+    excerpt: "Real story of how our DAO-governed claims process helped a user recover from a sophisticated phishing attack within 48 hours.",
+    image: "https://images.pexels.com/photos/2022650/pexels-photo-2022650.jpeg",
+    content: `
+      <h2>How BitSafe Recovered $30,000 from a Sophisticated Phishing Attack</h2>
+      
+      <p>This case study demonstrates the power of decentralized insurance and smart contract automation in protecting individual crypto users.</p>
+      
+      <h3>The Incident</h3>
+      <p>On March 8, 2025, Alex (name changed for privacy), a DeFi trader from Berlin, received what appeared to be a legitimate email from his favorite DEX platform announcing a "limited-time governance token airdrop." The email looked identical to official communications, complete with proper branding and links.</p>
+      
+      <p>The phishing site prompted Alex to connect his MetaMask wallet and sign a transaction to "claim" his tokens. What he actually signed was a malicious contract that drained $30,000 worth of ETH and USDC from his wallet within minutes.</p>
+      
+      <h3>The BitSafe Response</h3>
+      <p><strong>Hour 1:</strong> Alex noticed the unauthorized transactions and immediately submitted a claim through the BitSafe portal, providing his wallet address and transaction hashes.</p>
+      
+      <p><strong>Hour 6:</strong> BitSafe's AI system automatically verified the phishing attack using Chainlink oracles that cross-referenced the malicious contract address with known phishing databases.</p>
+      
+      <p><strong>Hour 24:</strong> The DAO governance system reviewed the claim. With clear evidence of a phishing attack and Alex's Pro Plan coverage, the vote passed unanimously.</p>
+      
+      <p><strong>Hour 48:</strong> Smart contracts automatically transferred $30,000 USDC to Alex's designated recovery wallet.</p>
+      
+      <h3>Key Factors in Successful Recovery</h3>
+      <ul>
+        <li><strong>Immediate Reporting:</strong> Alex submitted his claim within hours of the attack</li>
+        <li><strong>Proper Coverage:</strong> His Pro Plan included phishing protection</li>
+        <li><strong>Clear Evidence:</strong> Transaction hashes and contract addresses provided undeniable proof</li>
+        <li><strong>DAO Efficiency:</strong> Decentralized review process ensured fair and fast resolution</li>
+      </ul>
+      
+      <h3>Lessons Learned</h3>
+      <p>This case highlights the importance of:</p>
+      <ul>
+        <li>Having comprehensive crypto insurance in place before you need it</li>
+        <li>Acting quickly when security incidents occur</li>
+        <li>The power of blockchain transparency in insurance claims</li>
+      </ul>
+      
+      <p><em>"BitSafe didn't just recover my funds – they restored my faith in the crypto ecosystem. The DAO governance model ensured I was treated fairly, and the smart contract automation made the payout instant once approved."</em> - Alex, BitSafe user</p>
+    `
+  },
+  {
+    id: 3,
+    title: "Understanding DAO Insurance Claims",
+    date: "March 10, 2025",
+    excerpt: "Deep dive into how decentralized autonomous organizations are revolutionizing insurance claims processing through transparency and automation.",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwzfHxjcnlwdG8lMjBzZWN1cml0eXxlbnwwfHx8fDE3NDgyNjc0MzV8MA&ixlib=rb-4.1.0&q=85",
+    content: `
+      <h2>The Revolution of DAO-Governed Insurance Claims</h2>
+      
+      <p>Decentralized Autonomous Organizations (DAOs) are transforming how insurance claims are processed, bringing unprecedented transparency, fairness, and efficiency to an industry traditionally plagued by opacity and bureaucratic delays.</p>
+      
+      <h3>Traditional Insurance vs. DAO Insurance</h3>
+      
+      <h4>Traditional Insurance Problems:</h4>
+      <ul>
+        <li>Opaque decision-making processes</li>
+        <li>Lengthy claim processing times (weeks to months)</li>
+        <li>Subjective claim rejections</li>
+        <li>Limited user recourse for disputes</li>
+        <li>High operational costs passed to customers</li>
+      </ul>
+      
+      <h4>DAO Insurance Advantages:</h4>
+      <ul>
+        <li>Transparent, on-chain voting records</li>
+        <li>Automated processing via smart contracts</li>
+        <li>Community-driven claim validation</li>
+        <li>Immutable audit trails</li>
+        <li>Democratic dispute resolution</li>
+      </ul>
+      
+      <h3>How BitSafe's DAO Claims Process Works</h3>
+      
+      <h4>1. Claim Submission</h4>
+      <p>Users submit claims through the BitSafe portal or AI chatbot, providing:</p>
+      <ul>
+        <li>Wallet addresses and transaction hashes</li>
+        <li>Description of the incident</li>
+        <li>Supporting evidence (screenshots, emails, etc.)</li>
+      </ul>
+      
+      <h4>2. Automated Verification</h4>
+      <p>Smart contracts and Chainlink oracles automatically verify:</p>
+      <ul>
+        <li>Policy validity and coverage limits</li>
+        <li>Transaction authenticity</li>
+        <li>Known attack signatures</li>
+        <li>Wallet activity patterns</li>
+      </ul>
+      
+      <h4>3. DAO Review Process</h4>
+      <p>For claims requiring human judgment:</p>
+      <ul>
+        <li>DAO members review anonymized case data</li>
+        <li>Voting weighted by stake and reputation</li>
+        <li>72-hour review period for complex cases</li>
+        <li>All votes recorded on-chain for transparency</li>
+      </ul>
+      
+      <h4>4. Automated Payout</h4>
+      <p>Upon approval:</p>
+      <ul>
+        <li>Smart contracts automatically transfer funds</li>
+        <li>No manual intervention required</li>
+        <li>Instant settlement to user's wallet</li>
+      </ul>
+      
+      <h3>The Role of Token Economics</h3>
+      <p>BitSafe's governance token (SAFE) aligns incentives:</p>
+      <ul>
+        <li><strong>Staking Rewards:</strong> DAO members earn rewards for participating in governance</li>
+        <li><strong>Reputation System:</strong> Accurate voting increases voting power</li>
+        <li><strong>Penalty Mechanism:</strong> Bad actors lose staked tokens</li>
+        <li><strong>Insurance Pool:</strong> Token holders share in premium revenues</li>
+      </ul>
+      
+      <h3>Real-World Impact</h3>
+      <p>Since launching in Q1 2025, BitSafe's DAO has processed 347 claims with:</p>
+      <ul>
+        <li><strong>Average processing time:</strong> 18 hours</li>
+        <li><strong>Approval rate:</strong> 94% for valid claims</li>
+        <li><strong>User satisfaction:</strong> 4.8/5 rating</li>
+        <li><strong>Total payouts:</strong> $2.3M recovered for users</li>
+      </ul>
+      
+      <h3>The Future of Insurance</h3>
+      <p>DAO-governed insurance represents a paradigm shift toward:</p>
+      <ul>
+        <li>Community-owned insurance protocols</li>
+        <li>Programmable insurance policies</li>
+        <li>Cross-chain coverage expansion</li>
+        <li>AI-enhanced risk assessment</li>
+      </ul>
+      
+      <p>As the crypto ecosystem matures, DAO insurance will become the standard for protecting digital assets, offering the transparency and fairness that traditional insurance has failed to deliver.</p>
+    `
+  },
+  {
+    id: 4,
+    title: "DeFi Insurance: Protecting Your Yield Farming Investments",
+    date: "March 8, 2025",
+    excerpt: "Navigate the risks of DeFi protocols and learn how to protect your yield farming investments with smart insurance strategies.",
+    image: "https://images.pexels.com/photos/6802049/pexels-photo-6802049.jpeg",
+    content: `
+      <h2>DeFi Insurance: Protecting Your Yield Farming Investments</h2>
+      
+      <p>Yield farming offers attractive returns, but it comes with significant risks. Smart contract bugs, rug pulls, and impermanent loss can wipe out gains overnight. Here's how to protect your DeFi investments.</p>
+      
+      <h3>Common DeFi Risks</h3>
+      <ul>
+        <li><strong>Smart Contract Risk:</strong> Code vulnerabilities and exploits</li>
+        <li><strong>Impermanent Loss:</strong> Price divergence in liquidity pools</li>
+        <li><strong>Rug Pulls:</strong> Malicious project abandonment</li>
+        <li><strong>Oracle Manipulation:</strong> Price feed attacks</li>
+        <li><strong>Governance Attacks:</strong> Hostile takeovers of protocols</li>
+      </ul>
+      
+      <h3>Insurance Strategies</h3>
+      <p>BitSafe's DeFi coverage includes protection against smart contract failures, covering major protocols like Uniswap, Aave, and Compound. Our coverage extends to both capital loss and lost yield opportunities.</p>
+    `
+  },
+  {
+    id: 5,
+    title: "The Rise of Crypto Scams: How to Stay Protected",
+    date: "March 5, 2025",
+    excerpt: "Cybercriminals are becoming increasingly sophisticated. Learn to identify and avoid the latest crypto scams targeting individual investors.",
+    image: "https://images.pexels.com/photos/5940844/pexels-photo-5940844.jpeg",
+    content: `
+      <h2>The Rise of Crypto Scams: How to Stay Protected</h2>
+      
+      <p>As crypto adoption grows, so does the creativity of scammers. In 2024, crypto scams cost investors over $5.6 billion. Here's how to protect yourself from the most common threats.</p>
+      
+      <h3>Top 2025 Crypto Scams</h3>
+      <ol>
+        <li><strong>Fake Airdrops:</strong> Malicious token distributions requiring wallet connections</li>
+        <li><strong>Romance Scams:</strong> Long-term relationship building leading to investment fraud</li>
+        <li><strong>Fake DEX Platforms:</strong> Copycat exchanges stealing funds</li>
+        <li><strong>NFT Phishing:</strong> Malicious NFT mints draining wallets</li>
+        <li><strong>Telegram Bots:</strong> Automated scams in crypto communities</li>
+      </ol>
+      
+      <h3>Protection Strategies</h3>
+      <p>BitSafe's scam protection covers losses from verified phishing attempts, fake platforms, and social engineering attacks. Our AI monitoring system flags suspicious transactions in real-time.</p>
+    `
+  },
+  {
+    id: 6,
+    title: "Multi-Chain Security: Protecting Assets Across Networks",
+    date: "March 2, 2025",
+    excerpt: "With assets spread across Ethereum, Polygon, BSC, and more, multi-chain security has never been more critical for crypto investors.",
+    image: "https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg",
+    content: `
+      <h2>Multi-Chain Security: Protecting Assets Across Networks</h2>
+      
+      <p>The multi-chain ecosystem offers opportunities but multiplies risks. Each network has unique security considerations and attack vectors. Here's how to navigate this complex landscape safely.</p>
+      
+      <h3>Cross-Chain Risks</h3>
+      <ul>
+        <li><strong>Bridge Vulnerabilities:</strong> Cross-chain bridge exploits</li>
+        <li><strong>Network-Specific Attacks:</strong> Different consensus mechanisms</li>
+        <li><strong>Token Standard Differences:</strong> ERC-20 vs BEP-20 confusion</li>
+        <li><strong>Gas Fee Manipulation:</strong> Front-running on different chains</li>
+      </ul>
+      
+      <h3>BitSafe Multi-Chain Coverage</h3>
+      <p>Our insurance extends across 15+ blockchain networks, providing seamless protection whether you're trading on Ethereum, farming on Polygon, or exploring opportunities on emerging chains.</p>
+    `
+  },
+  {
+    id: 7,
+    title: "Hardware Wallet Security: Beyond the Basics",
+    date: "February 28, 2025",
+    excerpt: "Hardware wallets aren't foolproof. Learn advanced security techniques to maximize the protection of your cold storage setup.",
+    image: "https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg",
+    content: `
+      <h2>Hardware Wallet Security: Beyond the Basics</h2>
+      
+      <p>Hardware wallets provide excellent security, but user error and advanced attacks can still compromise your funds. Master these advanced techniques to bulletproof your cold storage.</p>
+      
+      <h3>Advanced Security Measures</h3>
+      <ul>
+        <li><strong>Multi-Signature Setup:</strong> Require multiple hardware devices for transactions</li>
+        <li><strong>Passphrases:</strong> Add a 25th word to your seed phrase</li>
+        <li><strong>Decoy Wallets:</strong> Create multiple wallets with small amounts</li>
+        <li><strong>Air-Gapped Verification:</strong> Verify transactions offline</li>
+      </ul>
+      
+      <h3>Common Mistakes</h3>
+      <p>Even hardware wallet users can lose funds through phishing attacks, malicious DApps, or compromised computers. BitSafe's hardware wallet coverage protects against user error and sophisticated attacks targeting cold storage users.</p>
+    `
+  },
+  {
+    id: 8,
+    title: "NFT Security: Protecting Your Digital Collectibles",
+    date: "February 25, 2025",
+    excerpt: "NFTs represent significant value but come with unique security challenges. Learn how to protect your digital art and collectibles.",
+    image: "https://images.pexels.com/photos/8369747/pexels-photo-8369747.jpeg",
+    content: `
+      <h2>NFT Security: Protecting Your Digital Collectibles</h2>
+      
+      <p>NFTs have created new wealth but also new attack vectors. From malicious mints to marketplace exploits, NFT holders face unique security challenges requiring specialized protection strategies.</p>
+      
+      <h3>NFT-Specific Threats</h3>
+      <ul>
+        <li><strong>Malicious Mints:</strong> NFTs that drain wallets upon interaction</li>
+        <li><strong>Marketplace Exploits:</strong> OpenSea and other platform vulnerabilities</li>
+        <li><strong>Fake Collections:</strong> Copycat projects mimicking popular NFTs</li>
+        <li><strong>Approval Scams:</strong> Unlimited token approvals through NFT interactions</li>
+      </ul>
+      
+      <h3>Protection Strategies</h3>
+      <p>BitSafe offers specialized NFT insurance covering theft, loss through marketplace exploits, and damages from malicious smart contracts. Our coverage includes both the NFT asset value and any associated utility tokens.</p>
+    `
+  },
+  {
+    id: 9,
+    title: "Institutional vs Retail Crypto Security",
+    date: "February 22, 2025",
+    excerpt: "Why individual crypto investors need different security strategies than institutions, and how to implement enterprise-grade protection.",
+    image: "https://images.pexels.com/photos/7887865/pexels-photo-7887865.jpeg",
+    content: `
+      <h2>Institutional vs Retail Crypto Security</h2>
+      
+      <p>Institutional crypto security focuses on compliance and custody, while retail investors need practical, user-friendly solutions. Here's how to achieve institutional-grade security as an individual investor.</p>
+      
+      <h3>Key Differences</h3>
+      <table>
+        <tr><th>Aspect</th><th>Institutional</th><th>Retail</th></tr>
+        <tr><td>Custody</td><td>Third-party custodians</td><td>Self-custody</td></tr>
+        <tr><td>Compliance</td><td>Regulatory oversight</td><td>Personal responsibility</td></tr>
+        <tr><td>Insurance</td><td>Lloyd's of London policies</td><td>Limited options</td></tr>
+        <tr><td>Support</td><td>24/7 dedicated teams</td><td>Community forums</td></tr>
+      </table>
+      
+      <h3>Bridging the Gap</h3>
+      <p>BitSafe democratizes institutional-grade protection for individual investors, offering the same level of coverage and support traditionally available only to large institutions.</p>
+    `
+  },
+  {
+    id: 10,
+    title: "Crypto Insurance Tax Implications",
+    date: "February 19, 2025",
+    excerpt: "Understanding the tax implications of crypto insurance premiums and payouts in different jurisdictions around the world.",
+    image: "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg",
+    content: `
+      <h2>Crypto Insurance Tax Implications</h2>
+      
+      <p>Crypto insurance premiums and payouts have complex tax implications that vary by jurisdiction. Understanding these rules is crucial for proper financial planning and compliance.</p>
+      
+      <h3>Tax Considerations by Region</h3>
+      
+      <h4>United States</h4>
+      <ul>
+        <li><strong>Premiums:</strong> Generally not deductible for personal crypto holdings</li>
+        <li><strong>Payouts:</strong> May be taxable as ordinary income</li>
+        <li><strong>Business Use:</strong> Different rules apply for trading businesses</li>
+      </ul>
+      
+      <h4>European Union</h4>
+      <ul>
+        <li><strong>VAT:</strong> Insurance services generally exempt</li>
+        <li><strong>Income Tax:</strong> Varies by member state</li>
+        <li><strong>Capital Gains:</strong> Replacement property rules may apply</li>
+      </ul>
+      
+      <h4>United Kingdom</h4>
+      <ul>
+        <li><strong>Insurance Premium Tax:</strong> May apply to certain policies</li>
+        <li><strong>Capital Gains Relief:</strong> Available for asset replacement</li>
+      </ul>
+      
+      <h3>Record Keeping</h3>
+      <p>Maintain detailed records of premiums paid, policy terms, and any claims. BitSafe provides comprehensive tax documentation to simplify compliance across all major jurisdictions.</p>
+      
+      <h3>Professional Advice</h3>
+      <p>Given the complexity and evolving nature of crypto taxation, always consult with qualified tax professionals familiar with digital assets in your jurisdiction.</p>
+    `
+  }
+];
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+// Individual Article Component
+const Article = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const article = blogArticles.find(a => a.id === parseInt(id));
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
+  if (!article) {
+    return <div>Article not found</div>;
+  }
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      {/* Navigation */}
+      <nav className="bg-blue-900/80 backdrop-blur-sm border-b border-blue-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-white cursor-pointer" onClick={() => navigate('/')}>BitSafe</span>
+                <div className="text-xs text-blue-300 -mt-1">Crypto Insurance</div>
+              </div>
+            </div>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Article Content */}
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 fade-in">
+        <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-800">
+          <div className="text-blue-400 text-sm mb-4">{article.date}</div>
+          <h1 className="text-4xl font-bold text-white mb-6">{article.title}</h1>
+          <img 
+            src={article.image}
+            alt={article.title}
+            className="w-full h-64 object-cover rounded-xl mb-8"
+          />
+          <div 
+            className="prose prose-invert prose-blue max-w-none text-blue-100"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
+          <div className="mt-12 pt-8 border-t border-blue-800">
+            <button 
+              onClick={() => navigate('/blog')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors mr-4"
+            >
+              ← Back to Blog
+            </button>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-slate-600 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            >
+              Home
+            </button>
+          </div>
+        </div>
+      </article>
     </div>
   );
 };
 
-function App() {
+// Blog List Component
+const BlogList = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      {/* Navigation */}
+      <nav className="bg-blue-900/80 backdrop-blur-sm border-b border-blue-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-white cursor-pointer" onClick={() => navigate('/')}>BitSafe</span>
+                <div className="text-xs text-blue-300 -mt-1">Crypto Insurance</div>
+              </div>
+            </div>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Blog List */}
+      <section className="py-20 fade-in">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold text-white text-center mb-8">BitSafe Blog</h1>
+          <p className="text-xl text-blue-200 text-center mb-16 max-w-3xl mx-auto">
+            Stay updated with the latest insights on crypto security, insurance trends, and blockchain technology.
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogArticles.map((article, index) => (
+              <article key={article.id} className={`bg-slate-800/50 rounded-xl overflow-hidden border border-blue-800 hover:border-blue-600 transition-all duration-300 hover:transform hover:scale-105 card-hover`} style={{animationDelay: `${index * 0.1}s`}}>
+                <img 
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <div className="text-blue-400 text-sm mb-2">{article.date}</div>
+                  <h3 className="text-xl font-bold text-white mb-3">{article.title}</h3>
+                  <p className="text-blue-200 mb-4">{article.excerpt}</p>
+                  <button 
+                    onClick={() => navigate(`/article/${article.id}`)}
+                    className="text-blue-400 hover:text-blue-300 font-semibold"
+                  >
+                    Read More →
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+// Main Content Component (Homepage)
+const MainContent = () => {
+  const navigate = useNavigate();
+  const [calculatorData, setCalculatorData] = useState({
+    walletValue: '',
+    walletType: '',
+    coverageType: '',
+    securityMeasures: '',
+    duration: ''
+  });
+
+  const [quote, setQuote] = useState(null);
+
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    walletAddress: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  // Updated premium calculation logic
+  const calculatePremium = () => {
+    if (!calculatorData.walletValue || !calculatorData.walletType || !calculatorData.coverageType || !calculatorData.securityMeasures || !calculatorData.duration) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    const baseValue = parseFloat(calculatorData.walletValue) || 0;
+    
+    // Base risk multipliers
+    const walletRiskMultiplier = {
+      'hardware': 0.5,
+      'software': 1.0,
+      'exchange': 1.8
+    };
+
+    const coverageMultiplier = {
+      'scam': 0.8,
+      'hacking': 1.0,
+      'smart-contract': 1.2,
+      'full': 1.5
+    };
+
+    const securityMultiplier = {
+      '2fa-cold': 0.6,
+      '2fa-only': 0.8,
+      'cold-only': 0.7,
+      'no-security': 1.5
+    };
+
+    const durationMultiplier = {
+      '1month': 1.0,
+      '3months': 2.8,
+      '6months': 5.4,
+      '1year': 10.0
+    };
+
+    // Calculate base premium (1.5-4% annually based on risk)
+    const basePremiumRate = 0.025; // 2.5% base rate
+    const riskMultiplier = walletRiskMultiplier[calculatorData.walletType] * 
+                          coverageMultiplier[calculatorData.coverageType] * 
+                          securityMultiplier[calculatorData.securityMeasures];
+    
+    const annualPremium = baseValue * basePremiumRate * riskMultiplier;
+    const actualPremium = annualPremium * durationMultiplier[calculatorData.duration] / 12;
+
+    // Determine risk level
+    let riskLevel = 'Low';
+    if (riskMultiplier > 1.5) riskLevel = 'High';
+    else if (riskMultiplier > 1.0) riskLevel = 'Medium';
+
+    setQuote({
+      premium: actualPremium,
+      riskLevel: riskLevel,
+      duration: calculatorData.duration,
+      coverageAmount: baseValue
+    });
+  };
+
+  // Handle contact form submission with your EmailJS credentials
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      // Initialize EmailJS with your credentials
+      const result = await emailjs.send(
+        'service_hqgn6yn', // Your service ID
+        'template_69xd4sd', // Your template ID
+        {
+          from_name: contactForm.name,
+          from_email: contactForm.email,
+          wallet_address: contactForm.walletAddress || 'Not provided',
+          message: contactForm.message,
+          to_email: 'hello@bitsafe.ltd'
+        },
+        'EOqkhvyILTgDLTbMN' // Your public key
+      );
+
+      setSubmitMessage('✅ Message sent successfully! We\'ll get back to you soon.');
+      setContactForm({ name: '', email: '', walletAddress: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSubmitMessage('❌ Sorry, there was an error sending your message. Please try again or email us directly at hello@bitsafe.ltd');
+    }
+
+    setIsSubmitting(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      {/* Navigation */}
+      <nav className="bg-blue-900/80 backdrop-blur-sm border-b border-blue-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              {/* Updated BitSafe Logo */}
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-white">BitSafe</span>
+                <div className="text-xs text-blue-300 -mt-1">Crypto Insurance</div>
+              </div>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#home" className="text-blue-200 hover:text-white transition-colors">Home</a>
+              <a href="#how-it-works" className="text-blue-200 hover:text-white transition-colors">How It Works</a>
+              <a href="#calculator" className="text-blue-200 hover:text-white transition-colors">Calculator</a>
+              <a href="#plans" className="text-blue-200 hover:text-white transition-colors">Plans</a>
+              <a href="#claims" className="text-blue-200 hover:text-white transition-colors">Claims</a>
+              <a href="#blog" className="text-blue-200 hover:text-white transition-colors">Blog</a>
+              <a href="#contact" className="text-blue-200 hover:text-white transition-colors">Contact</a>
+            </div>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+              Get Insured Now
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="relative min-h-screen flex items-center">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1639762681057-408e52192e55?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwyfHxjcnlwdG8lMjBzZWN1cml0eXxlbnwwfHx8fDE3NDgyNjc0MzV8MA&ixlib=rb-4.1.0&q=85"
+            alt="Crypto Security"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-slate-900/80"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 slide-up">
+            Smart Protection for
+            <span className="text-blue-400"> Digital Assets</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-blue-200 mb-8 max-w-4xl mx-auto slide-up" style={{animationDelay: '0.2s'}}>
+            Get insured in minutes. Transparent pricing. Real-time crypto wallet protection.
+          </p>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 shadow-lg pulse-blue slide-up" style={{animationDelay: '0.4s'}}>
+            Get Insured Now
+          </button>
+        </div>
+      </section>
+
+      {/* How It Works Section - Updated to remove "Connect Wallet" */}
+      <section id="how-it-works" className="py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">How It Works</h2>
+          
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center fade-in" style={{animationDelay: '0.1s'}}>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
+                <span className="text-xl font-bold text-white">1</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-3">Select Coverage</h3>
+              <p className="text-blue-200 text-sm">Choose your coverage type and amount.</p>
+            </div>
+            <div className="text-center fade-in" style={{animationDelay: '0.2s'}}>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
+                <span className="text-xl font-bold text-white">2</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-3">View Premium</h3>
+              <p className="text-blue-200 text-sm">Get instant transparent pricing.</p>
+            </div>
+            <div className="text-center fade-in" style={{animationDelay: '0.3s'}}>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
+                <span className="text-xl font-bold text-white">3</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-3">Get Insured</h3>
+              <p className="text-blue-200 text-sm">One-click activation and coverage.</p>
+            </div>
+            <div className="text-center fade-in" style={{animationDelay: '0.4s'}}>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
+                <span className="text-xl font-bold text-white">4</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-3">File Claims</h3>
+              <p className="text-blue-200 text-sm">Easy claims with automated verification.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Calculator Section */}
+      <section id="calculator" className="py-20 bg-gradient-to-br from-blue-900 to-slate-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-8 fade-in">Calculate Your Premium Instantly</h2>
+          <p className="text-blue-200 text-center mb-12 fade-in">Enter your wallet details to get an instant insurance quote.</p>
+          
+          <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-blue-800 fade-in">
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Left Column */}
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-white font-semibold mb-2">Insured Wallet Value (USD)</label>
+                  <input
+                    type="number"
+                    placeholder="Enter the total USD value of your crypto wallet"
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    value={calculatorData.walletValue}
+                    onChange={(e) => setCalculatorData(prev => ({...prev, walletValue: e.target.value}))}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-white font-semibold mb-2">Type of Wallet</label>
+                  <select 
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    value={calculatorData.walletType}
+                    onChange={(e) => setCalculatorData(prev => ({...prev, walletType: e.target.value}))}
+                  >
+                    <option value="">Select wallet type</option>
+                    <option value="hardware">Hardware Wallet (Ledger, Trezor, etc.)</option>
+                    <option value="software">Software Wallet (MetaMask, Trust Wallet)</option>
+                    <option value="exchange">Exchange Wallet (Binance, Coinbase, etc.)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-white font-semibold mb-2">Coverage Type</label>
+                  <select 
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    value={calculatorData.coverageType}
+                    onChange={(e) => setCalculatorData(prev => ({...prev, coverageType: e.target.value}))}
+                  >
+                    <option value="">Select coverage type</option>
+                    <option value="scam">Scam Protection</option>
+                    <option value="hacking">Hacking & Theft</option>
+                    <option value="smart-contract">Smart Contract Failures</option>
+                    <option value="full">Full Protection (All of the above)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-white font-semibold mb-2">Security Measures in Place</label>
+                  <select 
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    value={calculatorData.securityMeasures}
+                    onChange={(e) => setCalculatorData(prev => ({...prev, securityMeasures: e.target.value}))}
+                  >
+                    <option value="">Select security measures</option>
+                    <option value="2fa-cold">2FA + Cold Storage</option>
+                    <option value="2fa-only">2FA Only</option>
+                    <option value="cold-only">Cold Wallet Only</option>
+                    <option value="no-security">No Security Measures</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-white font-semibold mb-2">Coverage Duration</label>
+                  <select 
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    value={calculatorData.duration}
+                    onChange={(e) => setCalculatorData(prev => ({...prev, duration: e.target.value}))}
+                  >
+                    <option value="">Select duration</option>
+                    <option value="1month">1 Month</option>
+                    <option value="3months">3 Months</option>
+                    <option value="6months">6 Months</option>
+                    <option value="1year">1 Year</option>
+                  </select>
+                </div>
+
+                <button 
+                  onClick={calculatePremium}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold transition-colors hover-glow"
+                >
+                  Get Quote
+                </button>
+
+                {quote && (
+                  <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 fade-in">
+                    <div className="text-center">
+                      <div className={`inline-block px-3 py-1 rounded-full text-sm font-semibold mb-2 ${
+                        quote.riskLevel === 'Low' ? 'bg-green-600 text-white risk-low' :
+                        quote.riskLevel === 'Medium' ? 'bg-yellow-600 text-white risk-medium' : 'bg-red-600 text-white risk-high'
+                      }`}>
+                        {quote.riskLevel} Risk
+                      </div>
+                      <p className="text-white font-bold text-lg">
+                        Estimated Premium: ${quote.premium.toFixed(2)}
+                      </p>
+                      <p className="text-blue-200 text-sm">
+                        for {quote.duration.replace('month', ' month').replace('year', ' year')} 
+                        covering ${quote.coverageAmount.toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Coverage Plans Section */}
+      <section id="plans" className="py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-8 fade-in">🛡️ Coverage Plans</h2>
+          <p className="text-blue-200 text-center mb-16 fade-in">Choose the plan that fits your risk level and wallet size.</p>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Basic Plan */}
+            <div className="bg-slate-700/50 p-8 rounded-2xl border border-blue-800 relative card-hover fade-in" style={{animationDelay: '0.1s'}}>
+              <div className="text-center mb-6">
+                <div className="text-3xl mb-2">🔹</div>
+                <h3 className="text-2xl font-bold text-white">Basic Plan</h3>
+                <div className="text-3xl font-bold text-green-400 mt-2">$10/month</div>
+                <p className="text-blue-200 text-sm mt-2">Perfect for entry-level users and small wallets.</p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Wallet loss up to $5,000</span>
+                </li>
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Scam detection alerts</span>
+                </li>
+                <li className="flex items-center text-red-400">
+                  <span className="mr-2">✖</span>
+                  <span className="text-gray-400">Smart contract hack protection</span>
+                </li>
+                <li className="flex items-center text-red-400">
+                  <span className="mr-2">✖</span>
+                  <span className="text-gray-400">Priority claims processing</span>
+                </li>
+              </ul>
+              <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                Choose Basic
+              </button>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="bg-slate-700/50 p-8 rounded-2xl border-2 border-blue-500 relative card-hover fade-in" style={{animationDelay: '0.2s'}}>
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">POPULAR</span>
+              </div>
+              <div className="text-center mb-6">
+                <div className="text-3xl mb-2">🔷</div>
+                <h3 className="text-2xl font-bold text-white">Pro Plan</h3>
+                <div className="text-3xl font-bold text-blue-400 mt-2">$25/month</div>
+                <p className="text-blue-200 text-sm mt-2">Ideal for active traders and diversified portfolios.</p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Wallet loss up to $25,000</span>
+                </li>
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Phishing & scam protection</span>
+                </li>
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Smart contract audit support</span>
+                </li>
+                <li className="flex items-center text-red-400">
+                  <span className="mr-2">✖</span>
+                  <span className="text-gray-400">DAO voting access</span>
+                </li>
+              </ul>
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                Choose Pro
+              </button>
+            </div>
+
+            {/* DAO Vault */}
+            <div className="bg-slate-700/50 p-8 rounded-2xl border border-purple-800 relative card-hover fade-in" style={{animationDelay: '0.3s'}}>
+              <div className="text-center mb-6">
+                <div className="text-3xl mb-2">⚡</div>
+                <h3 className="text-2xl font-bold text-white">DAO Vault</h3>
+                <div className="text-2xl font-bold text-purple-400 mt-2">10% of coverage/year</div>
+                <p className="text-blue-200 text-sm mt-2">Advanced, decentralized insurance backed by DAO governance.</p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Full coverage up to $100,000</span>
+                </li>
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Custom policy options (NFTs, DeFi, Layer 2s)</span>
+                </li>
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Governance voting rights</span>
+                </li>
+                <li className="flex items-center text-green-400">
+                  <span className="mr-2">✔</span>
+                  <span className="text-blue-200">Priority smart contract monitoring</span>
+                </li>
+              </ul>
+              <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                Choose DAO Vault
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-12 bg-blue-900/30 p-6 rounded-xl border border-blue-800 fade-in">
+            <h4 className="text-lg font-bold text-white mb-4">All plans include:</h4>
+            <div className="grid md:grid-cols-4 gap-4 text-blue-200">
+              <div className="flex items-center">
+                <span className="mr-2">🔍</span>
+                <span>24/7 wallet monitoring</span>
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2">🔒</span>
+                <span>Encrypted claims handling</span>
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2">📊</span>
+                <span>Live security analytics</span>
+              </div>
+              <div className="flex items-center">
+                <span className="mr-2">🔔</span>
+                <span>Automatic renewal alerts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Claims Process Section */}
+      <section id="claims" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold text-white mb-8 fade-in">Fast, Transparent Claims</h2>
+          <p className="text-blue-200 mb-12 max-w-3xl mx-auto fade-in">
+            All claims are reviewed through DAO votes or smart contract triggers using Chainlink oracles and IPFS evidence. 
+            You'll be notified by email and on-chain about your claim status.
+          </p>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.1s'}}>
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold">1</span>
+              </div>
+              <h3 className="font-bold text-white mb-2">Submit Incident</h3>
+              <p className="text-blue-200 text-sm">(via portal or chatbot)</p>
+            </div>
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.2s'}}>
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold">2</span>
+              </div>
+              <h3 className="font-bold text-white mb-2">Submit Details</h3>
+              <p className="text-blue-200 text-sm">Submit wallet ID + loss details</p>
+            </div>
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.3s'}}>
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold">3</span>
+              </div>
+              <h3 className="font-bold text-white mb-2">Verification</h3>
+              <p className="text-blue-200 text-sm">Verification + DAO vote (or smart contract trigger)</p>
+            </div>
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.4s'}}>
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold">4</span>
+              </div>
+              <h3 className="font-bold text-white mb-2">Receive Payout</h3>
+              <p className="text-blue-200 text-sm">Receive payout to wallet</p>
+            </div>
+          </div>
+          
+          <div className="mt-12 bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-6 rounded-xl border border-blue-800 fade-in">
+            <h4 className="text-xl font-bold text-white mb-4">Powered by Blockchain Technology</h4>
+            <div className="grid md:grid-cols-3 gap-4 text-blue-200">
+              <div className="flex items-center justify-center">
+                <span className="mr-2">⛓️</span>
+                <span>Chainlink Oracles</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <span className="mr-2">📁</span>
+                <span>IPFS Evidence Storage</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <span className="mr-2">🗳️</span>
+                <span>DAO Governance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why BitSafe Section */}
+      <section className="py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Why BitSafe?</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.1s'}}>
+              <div className="text-3xl mb-4">💰</div>
+              <h3 className="text-lg font-bold text-white mb-3">Transparent Pricing</h3>
+              <p className="text-blue-200 text-sm">No hidden fees. Fair, risk-based premiums.</p>
+            </div>
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.2s'}}>
+              <div className="text-3xl mb-4">⚡</div>
+              <h3 className="text-lg font-bold text-white mb-3">Instant Coverage</h3>
+              <p className="text-blue-200 text-sm">Get activated immediately. No waiting periods.</p>
+            </div>
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.3s'}}>
+              <div className="text-3xl mb-4">🏗️</div>
+              <h3 className="text-lg font-bold text-white mb-3">Decentralized Trust</h3>
+              <p className="text-blue-200 text-sm">Built on smart contracts and DAO governance.</p>
+            </div>
+            <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.4s'}}>
+              <div className="text-3xl mb-4">👤</div>
+              <h3 className="text-lg font-bold text-white mb-3">Retail Focused</h3>
+              <p className="text-blue-200 text-sm">For individual users, not just institutions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-900 to-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Loved by Web3 Users Worldwide</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-slate-800/50 p-6 rounded-xl border border-blue-800 testimonial-card card-hover fade-in" style={{animationDelay: '0.1s'}}>
+              <p className="text-blue-200 mb-4">"Finally, insurance I trust for my MetaMask!"</p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-white font-bold">A</span>
+                </div>
+                <div>
+                  <p className="text-white font-semibold">Alex Chen</p>
+                  <p className="text-blue-300 text-sm">DeFi Trader</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-800/50 p-6 rounded-xl border border-blue-800 testimonial-card card-hover fade-in" style={{animationDelay: '0.2s'}}>
+              <p className="text-blue-200 mb-4">"Simple UI, fair pricing, and real peace of mind."</p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-white font-bold">S</span>
+                </div>
+                <div>
+                  <p className="text-white font-semibold">Sarah Martinez</p>
+                  <p className="text-blue-300 text-sm">Crypto Investor</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-800/50 p-6 rounded-xl border border-blue-800 testimonial-card card-hover fade-in" style={{animationDelay: '0.3s'}}>
+              <p className="text-blue-200 mb-4">"BitSafe should be a must-have for every crypto user."</p>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-white font-bold">M</span>
+                </div>
+                <div>
+                  <p className="text-white font-semibold">Mike Johnson</p>
+                  <p className="text-blue-300 text-sm">Blockchain Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center mt-12 space-x-8 fade-in">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-2 hover-glow">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <p className="text-white font-semibold">Audited Smart Contracts</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-2 hover-glow">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="text-white font-semibold">DAO Governed</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-2 hover-glow">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-2 2-2-2-2 2-2-2v-2a6 6 0 017.743-5.743L10 6l2-2 2 2 2-2 2 2v2z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <p className="text-white font-semibold">KYC-Free</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section id="blog" className="py-20 bg-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Latest from BitSafe Blog</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {blogArticles.slice(0, 3).map((article, index) => (
+              <article key={article.id} className={`bg-slate-700/50 rounded-xl overflow-hidden border border-blue-800 hover:border-blue-600 transition-all duration-300 card-hover fade-in`} style={{animationDelay: `${index * 0.1}s`}}>
+                <img 
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <div className="text-blue-400 text-sm mb-2">{article.date}</div>
+                  <h3 className="text-xl font-bold text-white mb-3">{article.title}</h3>
+                  <p className="text-blue-200 mb-4">{article.excerpt}</p>
+                  <button 
+                    onClick={() => navigate(`/article/${article.id}`)}
+                    className="text-blue-400 hover:text-blue-300 font-semibold"
+                  >
+                    Read More →
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button 
+              onClick={() => navigate('/blog')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors hover-glow"
+            >
+              View All Articles
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Contact & Support</h2>
+          
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="fade-in">
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-white font-semibold mb-2">Name</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    placeholder="Your name"
+                    value={contactForm.name}
+                    onChange={(e) => setContactForm(prev => ({...prev, name: e.target.value}))}
+                  />
+                </div>
+                <div>
+                  <label className="block text-white font-semibold mb-2">Email</label>
+                  <input
+                    type="email"
+                    required
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    placeholder="your.email@example.com"
+                    value={contactForm.email}
+                    onChange={(e) => setContactForm(prev => ({...prev, email: e.target.value}))}
+                  />
+                </div>
+                <div>
+                  <label className="block text-white font-semibold mb-2">Wallet Address (optional)</label>
+                  <input
+                    type="text"
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    placeholder="0x..."
+                    value={contactForm.walletAddress}
+                    onChange={(e) => setContactForm(prev => ({...prev, walletAddress: e.target.value}))}
+                  />
+                </div>
+                <div>
+                  <label className="block text-white font-semibold mb-2">Message</label>
+                  <textarea
+                    rows="4"
+                    required
+                    className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
+                    placeholder="How can we help you?"
+                    value={contactForm.message}
+                    onChange={(e) => setContactForm(prev => ({...prev, message: e.target.value}))}
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold transition-colors disabled:opacity-50 hover-glow"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+                {submitMessage && (
+                  <p className={`text-sm ${submitMessage.includes('error') ? 'text-red-400' : 'text-green-400'}`}>
+                    {submitMessage}
+                  </p>
+                )}
+              </form>
+            </div>
+            
+            <div className="space-y-8 fade-in">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-6">Need help or custom coverage?</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                      </svg>
+                    </div>
+                    <span className="text-blue-200">hello@bitsafe.ltd</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">🌐</span>
+                    </div>
+                    <span className="text-blue-200">www.bitsafe.ltd</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">📍</span>
+                    </div>
+                    <span className="text-blue-200">Based in Berlin, Germany</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800">
+                <h4 className="text-lg font-bold text-white mb-4">Built by Crypto Natives, for Crypto Natives</h4>
+                <p className="text-blue-200">
+                  We're a decentralized team of developers, auditors, and insurance experts creating the first 
+                  user-friendly, DAO-powered wallet insurance protocol. BitSafe aims to bring Web2-level protection 
+                  to Web3 users — without compromising your privacy or sovereignty.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 py-8 border-t border-blue-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                </svg>
+              </div>
+              <div>
+                <span className="text-xl font-bold text-white">BitSafe</span>
+                <div className="text-xs text-blue-300">Crypto Insurance</div>
+              </div>
+            </div>
+            <div className="flex space-x-6 mb-4 md:mb-0">
+              <a href="#" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="text-blue-200 hover:text-white transition-colors">Terms of Use</a>
+              <a href="#" className="text-blue-200 hover:text-white transition-colors">DAO Governance</a>
+            </div>
+            <p className="text-blue-200">© 2025 BitSafe. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+// Main App Component with Router
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/article/:id" element={<Article />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
