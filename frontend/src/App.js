@@ -1122,14 +1122,14 @@ const MainContent = () => {
               </div>
             </div>
             <div className="bg-slate-800/50 p-6 rounded-xl border border-blue-800 testimonial-card card-hover fade-in" style={{animationDelay: '0.3s'}}>
-              <p className="text-blue-200 mb-4">"BitSafe should be a must-have for every crypto user."</p>
+              <p className="text-blue-200 mb-4">"Finally, crypto insurance that actually works! Every German needs this."</p>
               <div className="flex items-center">
                 <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-white font-bold">M</span>
+                  <span className="text-white font-bold">T</span>
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Mike Johnson</p>
-                  <p className="text-blue-300 text-sm">Blockchain Developer</p>
+                  <p className="text-white font-semibold">Thomas Müller</p>
+                  <p className="text-blue-300 text-sm">Crypto Consultant, Hamburg</p>
                 </div>
               </div>
             </div>
