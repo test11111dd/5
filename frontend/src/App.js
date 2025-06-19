@@ -690,21 +690,12 @@ const MainContent = () => {
               <a href="/about" className="text-blue-200 hover:text-white transition-colors">About</a>
               <a href="#contact" className="text-blue-200 hover:text-white transition-colors">Contact</a>
             </div>
-            <button 
-              onClick={() => {
-                const calculatorElement = document.getElementById('calculator');
-                if (calculatorElement) {
-                  // Direct scroll to the element's position
-                  window.scrollTo({
-                    top: calculatorElement.offsetTop - 100, // Subtract header height
-                    behavior: 'smooth'
-                  });
-                }
-              }}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            <a 
+              href="#calculator"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors inline-block"
             >
               Get Insured Now
-            </button>
+            </a>
           </div>
         </div>
       </nav>
