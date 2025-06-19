@@ -880,8 +880,8 @@ const MainContent = () => {
                       {/* Get Insured Now Button */}
                       <button 
                         onClick={() => {
-                          // Scroll to contact section
-                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                          // Scroll to calculator section to modify quote
+                          document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
                         }}
                         className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-4 px-6 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg pulse-green mt-2"
                       >
