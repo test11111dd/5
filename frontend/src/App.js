@@ -64,7 +64,7 @@ const blogArticles = [
         <li><strong>Immediate Reporting:</strong> Alex submitted his claim within hours of the attack</li>
         <li><strong>Proper Coverage:</strong> His Pro Plan included phishing protection</li>
         <li><strong>Clear Evidence:</strong> Transaction hashes and contract addresses provided undeniable proof</li>
-        <li><strong>DAO Efficiency:</strong> Decentralized review process ensured fair and fast resolution</li>
+        <li><strong>AI Efficiency:</strong> Automated review process ensured fair and fast resolution</li>
       </ul>
       
       <h3>Lessons Learned</h3>
