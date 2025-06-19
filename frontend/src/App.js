@@ -762,8 +762,8 @@ const MainContent = () => {
       {/* Premium Calculator Section */}
       <section id="calculator" className="py-20 bg-gradient-to-br from-blue-900 to-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white text-center mb-8 fade-in">Calculate Your Premium Instantly</h2>
-          <p className="text-blue-200 text-center mb-12 fade-in">Enter your wallet details to get an instant insurance quote.</p>
+          <h2 className="text-4xl font-bold text-white text-center mb-8 fade-in">AI Premium Calculator</h2>
+          <p className="text-blue-200 text-center mb-12 fade-in">Our AI analyzes your risk profile to give instant, personalized pricing.</p>
           
           <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-blue-800 fade-in">
             <div className="grid md:grid-cols-2 gap-6">
