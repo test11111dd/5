@@ -1221,24 +1221,36 @@ const MainContent = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Contact & Support</h2>
+          <h2 className="text-4xl font-bold text-white text-center mb-8 fade-in">Get Your AI-Powered Coverage</h2>
+          <p className="text-blue-200 text-center mb-16 fade-in">Ready to protect your crypto? Our team will set up your AI-monitored insurance in minutes.</p>
           
           <div className="grid md:grid-cols-2 gap-12">
             <div className="fade-in">
+              {/* Insurance-focused messaging */}
+              <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 p-4 rounded-xl border border-green-600 mb-6">
+                <div className="flex items-center mb-2">
+                  <span className="text-green-400 mr-2">🚀</span>
+                  <span className="text-white font-semibold">Fast Track Your Application</span>
+                </div>
+                <p className="text-green-200 text-sm">
+                  Tell us about your calculated premium and we'll get you insured today!
+                </p>
+              </div>
+              
               <form onSubmit={handleContactSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-white font-semibold mb-2">Name</label>
+                  <label className="block text-white font-semibold mb-2">Full Name *</label>
                   <input
                     type="text"
                     required
                     className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
-                    placeholder="Your name"
+                    placeholder="Your full name"
                     value={contactForm.name}
                     onChange={(e) => setContactForm(prev => ({...prev, name: e.target.value}))}
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-semibold mb-2">Email</label>
+                  <label className="block text-white font-semibold mb-2">Email Address *</label>
                   <input
                     type="email"
                     required
@@ -1253,18 +1265,18 @@ const MainContent = () => {
                   <input
                     type="text"
                     className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
-                    placeholder="0x..."
+                    placeholder="0x... (for faster setup)"
                     value={contactForm.walletAddress}
                     onChange={(e) => setContactForm(prev => ({...prev, walletAddress: e.target.value}))}
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-semibold mb-2">Message</label>
+                  <label className="block text-white font-semibold mb-2">Message *</label>
                   <textarea
                     rows="4"
                     required
                     className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
-                    placeholder="How can we help you?"
+                    placeholder="I want to get insured! My calculated premium was €X/month for €X coverage..."
                     value={contactForm.message}
                     onChange={(e) => setContactForm(prev => ({...prev, message: e.target.value}))}
                   ></textarea>
@@ -1272,14 +1284,23 @@ const MainContent = () => {
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold transition-colors disabled:opacity-50 hover-glow"
+                  className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white p-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:transform-none pulse-green"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <div className="spinner mr-2"></div>
+                      Setting up your coverage...
+                    </span>
+                  ) : (
+                    '🛡️ Start My AI Insurance Coverage'
+                  )}
                 </button>
                 {submitMessage && (
-                  <p className={`text-sm ${submitMessage.includes('error') ? 'text-red-400' : 'text-green-400'}`}>
-                    {submitMessage}
-                  </p>
+                  <div className={`p-3 rounded-lg ${submitMessage.includes('✅') ? 'bg-green-900/30 border border-green-600' : 'bg-red-900/30 border border-red-600'}`}>
+                    <p className={`text-sm ${submitMessage.includes('✅') ? 'text-green-400' : 'text-red-400'}`}>
+                      {submitMessage}
+                    </p>
+                  </div>
                 )}
               </form>
             </div>
