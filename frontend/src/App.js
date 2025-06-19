@@ -1436,6 +1436,433 @@ const MainContent = () => {
   );
 };
 
+// About Us Component
+const AboutUs = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      {/* Navigation */}
+      <nav className="bg-blue-900/80 backdrop-blur-sm border-b border-blue-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-white cursor-pointer" onClick={() => navigate('/')}>BitSafe</span>
+                <div className="text-xs text-blue-300 -mt-1">Crypto Insurance</div>
+              </div>
+            </div>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* About Us Content */}
+      <section className="py-20 fade-in">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold text-white text-center mb-8">About BitSafe</h1>
+          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-800 space-y-8">
+            
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">Our Mission</h2>
+              <p className="text-blue-200 text-lg leading-relaxed">
+                BitSafe is revolutionizing crypto security by providing the first user-friendly, DAO-powered wallet insurance protocol. 
+                We believe that Web3 users shouldn't have to choose between sovereignty and security. Our mission is to bring 
+                Web2-level protection to Web3 users without compromising privacy or decentralization.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
+              <p className="text-blue-200 text-lg leading-relaxed mb-4">
+                Founded in 2024 by a team of crypto natives, blockchain developers, and insurance experts, BitSafe emerged from 
+                a simple observation: while institutional crypto holders have access to comprehensive insurance solutions, 
+                individual users are left vulnerable to hacks, scams, and smart contract failures.
+              </p>
+              <p className="text-blue-200 text-lg leading-relaxed">
+                Based in Bielefeld, Germany, our diverse team combines decades of experience in traditional insurance, 
+                DeFi protocols, and blockchain security to create transparent, fair, and accessible crypto insurance for everyone.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">What Makes Us Different</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-600">
+                  <h3 className="text-xl font-bold text-white mb-3">🏗️ DAO Governance</h3>
+                  <p className="text-blue-200">All claims are processed through transparent, on-chain voting by our decentralized community.</p>
+                </div>
+                <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-600">
+                  <h3 className="text-xl font-bold text-white mb-3">⚡ Instant Coverage</h3>
+                  <p className="text-blue-200">Get protected immediately with no waiting periods or complex underwriting processes.</p>
+                </div>
+                <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-600">
+                  <h3 className="text-xl font-bold text-white mb-3">💰 Fair Pricing</h3>
+                  <p className="text-blue-200">Transparent, risk-based premiums with no hidden fees or surprise charges.</p>
+                </div>
+                <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-600">
+                  <h3 className="text-xl font-bold text-white mb-3">🔒 Privacy First</h3>
+                  <p className="text-blue-200">No KYC required. Protect your assets while maintaining your privacy and anonymity.</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-6">Our Values</h2>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-white font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Transparency</h3>
+                    <p className="text-blue-200">Every decision, every claim, every vote is recorded on-chain for complete transparency.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-white font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Fairness</h3>
+                    <p className="text-blue-200">DAO governance ensures that every user gets fair treatment regardless of wallet size.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mt-1">
+                    <span className="text-white font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Innovation</h3>
+                    <p className="text-blue-200">We're constantly evolving our protocols to stay ahead of emerging threats in the crypto space.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-6 rounded-xl border border-blue-600">
+              <h2 className="text-2xl font-bold text-white mb-4">Join Our Community</h2>
+              <p className="text-blue-200 mb-4">
+                BitSafe is more than just insurance - it's a community of crypto users protecting each other. 
+                Join our DAO, participate in governance, and help shape the future of crypto security.
+              </p>
+              <button 
+                onClick={() => navigate('/')}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Get Started Today
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// Privacy Policy Component
+const PrivacyPolicy = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      {/* Navigation */}
+      <nav className="bg-blue-900/80 backdrop-blur-sm border-b border-blue-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-white cursor-pointer" onClick={() => navigate('/')}>BitSafe</span>
+                <div className="text-xs text-blue-300 -mt-1">Crypto Insurance</div>
+              </div>
+            </div>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Privacy Policy Content */}
+      <section className="py-20 fade-in">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold text-white text-center mb-8">Privacy Policy</h1>
+          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-800 space-y-8">
+            
+            <div className="text-blue-200 text-sm">
+              <p><strong>Last updated:</strong> March 19, 2025</p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
+              <p className="text-blue-200 leading-relaxed">
+                BitSafe ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, 
+                use, disclose, and safeguard your information when you use our decentralized insurance platform and related services.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Information We Collect</h2>
+              <h3 className="text-xl font-semibold text-blue-300 mb-3">Information You Provide</h3>
+              <ul className="text-blue-200 space-y-2 mb-4">
+                <li>• Contact information (email address, name) when you contact us</li>
+                <li>• Wallet addresses for insurance coverage</li>
+                <li>• Transaction hashes for claims processing</li>
+                <li>• Communications when you contact our support team</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold text-blue-300 mb-3">Information Automatically Collected</h3>
+              <ul className="text-blue-200 space-y-2">
+                <li>• Usage data and analytics (anonymized)</li>
+                <li>• IP addresses and device information</li>
+                <li>• Browser type and operating system</li>
+                <li>• On-chain transaction data (publicly available)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">How We Use Your Information</h2>
+              <ul className="text-blue-200 space-y-2">
+                <li>• To provide and maintain our insurance services</li>
+                <li>• To process insurance claims and payouts</li>
+                <li>• To communicate with you about your account</li>
+                <li>• To improve our platform and user experience</li>
+                <li>• To comply with legal obligations</li>
+                <li>• To detect and prevent fraud</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Data Sharing and Disclosure</h2>
+              <p className="text-blue-200 leading-relaxed mb-4">
+                We do not sell, trade, or rent your personal information. We may share your information only in the following circumstances:
+              </p>
+              <ul className="text-blue-200 space-y-2">
+                <li>• <strong>DAO Governance:</strong> Anonymized claim data for community voting</li>
+                <li>• <strong>Service Providers:</strong> Trusted partners who assist in operating our platform</li>
+                <li>• <strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+                <li>• <strong>Business Transfers:</strong> In connection with mergers or acquisitions</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Blockchain and Decentralization</h2>
+              <p className="text-blue-200 leading-relaxed">
+                As a blockchain-based platform, certain information is inherently public and immutable on the blockchain, including:
+                transaction hashes, wallet addresses involved in claims, and DAO voting records. This information cannot be deleted 
+                or modified due to the nature of blockchain technology.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Data Security</h2>
+              <p className="text-blue-200 leading-relaxed">
+                We implement appropriate technical and organizational measures to protect your data, including encryption, 
+                secure servers, and access controls. However, no method of transmission over the internet is 100% secure.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Your Rights</h2>
+              <p className="text-blue-200 leading-relaxed mb-4">
+                Depending on your location, you may have the following rights regarding your personal data:
+              </p>
+              <ul className="text-blue-200 space-y-2">
+                <li>• Access to your personal data</li>
+                <li>• Correction of inaccurate data</li>
+                <li>• Deletion of your data (where legally permissible)</li>
+                <li>• Data portability</li>
+                <li>• Objection to processing</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Contact Us</h2>
+              <p className="text-blue-200 leading-relaxed">
+                If you have questions about this Privacy Policy or our data practices, please contact us at:
+              </p>
+              <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 mt-4">
+                <p className="text-blue-200">
+                  <strong>Email:</strong> privacy@bitsafe.ltd<br/>
+                  <strong>Address:</strong> Bielefeld, Germany
+                </p>
+              </div>
+            </div>
+
+            <div className="border-t border-blue-800 pt-6">
+              <p className="text-blue-300 text-sm">
+                This Privacy Policy may be updated from time to time. We will notify you of any changes by posting the new 
+                Privacy Policy on this page and updating the "Last updated" date.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// Impressum Component (German Legal Disclosure)
+const Impressum = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      {/* Navigation */}
+      <nav className="bg-blue-900/80 backdrop-blur-sm border-b border-blue-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1M12 7C13.4 7 14.8 8.6 14.8 10V11.5C15.4 11.5 16 12.1 16 12.7V16.2C16 16.8 15.4 17.3 14.8 17.3H9.2C8.6 17.3 8 16.8 8 16.2V12.7C8 12.1 8.6 11.5 9.2 11.5V10C9.2 8.6 10.6 7 12 7M12 8.2C11.2 8.2 10.5 8.7 10.5 10V11.5H13.5V10C13.5 8.7 12.8 8.2 12 8.2Z"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-white cursor-pointer" onClick={() => navigate('/')}>BitSafe</span>
+                <div className="text-xs text-blue-300 -mt-1">Crypto Insurance</div>
+              </div>
+            </div>
+            <button 
+              onClick={() => navigate('/')}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Impressum Content */}
+      <section className="py-20 fade-in">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-bold text-white text-center mb-8">Impressum</h1>
+          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-800 space-y-8">
+            
+            <div className="text-blue-200 text-sm">
+              <p>Information according to § 5 TMG (German Telemedia Act)</p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Company Information</h2>
+              <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-600">
+                <div className="space-y-2 text-blue-200">
+                  <p><strong>Company:</strong> BitSafe Insurance DAO</p>
+                  <p><strong>Location:</strong> Bielefeld, Germany</p>
+                  <p><strong>Email:</strong> legal@bitsafe.ltd</p>
+                  <p><strong>Website:</strong> www.bitsafe.ltd</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Legal Structure</h2>
+              <p className="text-blue-200 leading-relaxed">
+                BitSafe operates as a decentralized autonomous organization (DAO) providing crypto insurance services. 
+                The platform facilitates peer-to-peer insurance coverage through smart contracts and community governance.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Responsible for Content</h2>
+              <p className="text-blue-200 leading-relaxed">
+                Content responsibility according to § 55 Abs. 2 RStV (German Interstate Broadcasting Agreement):
+              </p>
+              <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 mt-4">
+                <p className="text-blue-200">
+                  BitSafe DAO Community<br/>
+                  Bielefeld, Germany<br/>
+                  Email: content@bitsafe.ltd
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Disclaimer</h2>
+              
+              <h3 className="text-xl font-semibold text-blue-300 mb-3">Liability for Content</h3>
+              <p className="text-blue-200 leading-relaxed mb-4">
+                The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents' 
+                accuracy, completeness, or topicality. According to statutory provisions, we are furthermore responsible for 
+                our own content on these web pages.
+              </p>
+
+              <h3 className="text-xl font-semibold text-blue-300 mb-3">Liability for Links</h3>
+              <p className="text-blue-200 leading-relaxed mb-4">
+                Our offer includes links to external third-party websites. We have no influence on the contents of those websites, 
+                therefore we cannot guarantee for those contents. The provider or administrator of linked pages is always responsible 
+                for the contents of the linked pages.
+              </p>
+
+              <h3 className="text-xl font-semibold text-blue-300 mb-3">Copyright</h3>
+              <p className="text-blue-200 leading-relaxed">
+                The content and works on these pages created by the site operators are subject to German copyright law. 
+                Duplication, processing, distribution, or any form of commercialization beyond the scope of the copyright law 
+                shall require the prior written consent of its respective author or creator.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Regulatory Notice</h2>
+              <div className="bg-yellow-900/30 p-6 rounded-xl border border-yellow-600">
+                <p className="text-yellow-200 leading-relaxed">
+                  <strong>Important:</strong> BitSafe provides decentralized insurance services through blockchain technology. 
+                  This service may not be available in all jurisdictions. Users are responsible for ensuring compliance with 
+                  local laws and regulations regarding cryptocurrency and insurance services.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">Dispute Resolution</h2>
+              <p className="text-blue-200 leading-relaxed">
+                The European Commission provides a platform for online dispute resolution (OS): 
+                <a href="https://ec.europa.eu/consumers/odr/" className="text-blue-400 hover:text-blue-300 ml-1" target="_blank" rel="noopener noreferrer">
+                  https://ec.europa.eu/consumers/odr/
+                </a>
+              </p>
+              <p className="text-blue-200 leading-relaxed mt-4">
+                We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+              </p>
+            </div>
+
+            <div className="border-t border-blue-800 pt-6">
+              <p className="text-blue-300 text-sm">
+                This Impressum complies with German legal requirements under TMG and RStV. 
+                Last updated: March 19, 2025
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
 // Main App Component with Router
 const App = () => {
   return (
