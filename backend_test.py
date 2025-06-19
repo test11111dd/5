@@ -185,13 +185,50 @@ class BitSafeAPITester:
         )
 
     def test_cors_configuration(self):
-        """Test CORS configuration"""
-        return self.run_test(
-            "CORS Configuration",
-            "OPTIONS",
-            "api",
-            200
-        )
+        """Test CORS configuration by checking headers in response"""
+        url = f"{self.base_url}/api"
+        headers = {
+            'Origin': 'http://example.com',
+            'Access-Control-Request-Method': 'GET',
+            'Access-Control-Request-Headers': 'Content-Type'
+        }
+        
+        self.tests_run += 1
+        print(f"\n🔍 Testing CORS Configuration...")
+        
+        try:
+            # Make a regular GET request and check CORS headers
+            response = requests.get(url, headers=headers)
+            
+            # Check if CORS headers are present
+            has_cors_headers = 'Access-Control-Allow-Origin' in response.headers
+            
+            if has_cors_headers:
+                self.tests_passed += 1
+                print(f"✅ Passed - CORS headers found in response")
+                print(f"   Access-Control-Allow-Origin: {response.headers.get('Access-Control-Allow-Origin', 'N/A')}")
+                self.test_results["CORS Configuration"] = {
+                    "status": "passed",
+                    "response": {
+                        "cors_headers": dict([(k, v) for k, v in response.headers.items() if k.startswith('Access-Control')])
+                    }
+                }
+                return True, {}
+            else:
+                print(f"❌ Failed - CORS headers not found in response")
+                self.test_results["CORS Configuration"] = {
+                    "status": "failed",
+                    "error": "CORS headers not found in response"
+                }
+                return False, {}
+                
+        except Exception as e:
+            print(f"❌ Failed - Error: {str(e)}")
+            self.test_results["CORS Configuration"] = {
+                "status": "failed",
+                "error": str(e)
+            }
+            return False, {}
 
     def test_invalid_endpoint(self):
         """Test an invalid endpoint to verify error handling"""
