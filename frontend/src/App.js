@@ -709,11 +709,11 @@ const MainContent = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 slide-up">
-            Smart Protection for
-            <span className="text-blue-400"> Digital Assets</span>
+            Germany's First <span className="text-blue-400">AI-Powered</span>
+            <br />Crypto Insurance
           </h1>
           <p className="text-xl md:text-2xl text-blue-200 mb-8 max-w-4xl mx-auto slide-up" style={{animationDelay: '0.2s'}}>
-            Get insured in minutes. Transparent pricing. Real-time crypto wallet protection.
+            Instant policies. AI-monitored risks. Smart contract payouts. Protection against hacks, scams, and lost keys.
           </p>
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 shadow-lg pulse-blue slide-up" style={{animationDelay: '0.4s'}}>
             Get Insured Now
