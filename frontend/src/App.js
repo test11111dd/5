@@ -1094,7 +1094,7 @@ const MainContent = () => {
       {/* Testimonials Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Loved by Web3 Users Worldwide</h2>
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Loved by German Crypto Users</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-slate-800/50 p-6 rounded-xl border border-blue-800 testimonial-card card-hover fade-in" style={{animationDelay: '0.1s'}}>
