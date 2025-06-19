@@ -770,10 +770,10 @@ const MainContent = () => {
               {/* Left Column */}
               <div className="space-y-6">
                 <div>
-                  <label className="block text-white font-semibold mb-2">Insured Wallet Value (USD)</label>
+                  <label className="block text-white font-semibold mb-2">Insured Wallet Value (EUR)</label>
                   <input
                     type="number"
-                    placeholder="Enter the total USD value of your crypto wallet"
+                    placeholder="Enter the total EUR value of your crypto wallet"
                     className="w-full bg-slate-700 text-white p-3 rounded-lg border border-blue-600 focus:border-blue-400 focus:outline-none focus-blue"
                     value={calculatorData.walletValue}
                     onChange={(e) => setCalculatorData(prev => ({...prev, walletValue: e.target.value}))}
