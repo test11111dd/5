@@ -718,22 +718,13 @@ const MainContent = () => {
           <p className="text-xl md:text-2xl text-blue-200 mb-8 max-w-4xl mx-auto slide-up" style={{animationDelay: '0.2s'}}>
             Instant policies. AI-monitored risks. Smart contract payouts. Protection against hacks, scams, and lost keys.
           </p>
-          <button 
-            onClick={() => {
-              const calculatorElement = document.getElementById('calculator');
-              if (calculatorElement) {
-                // Direct scroll to the element's position
-                window.scrollTo({
-                  top: calculatorElement.offsetTop - 100, // Subtract header height
-                  behavior: 'smooth'
-                });
-              }
-            }}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 shadow-lg pulse-blue slide-up" 
+          <a 
+            href="#calculator"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 shadow-lg pulse-blue slide-up inline-block" 
             style={{animationDelay: '0.4s'}}
           >
             Get Insured Now
-          </button>
+          </a>
         </div>
       </section>
 
