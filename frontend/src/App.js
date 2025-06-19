@@ -1065,27 +1065,27 @@ const MainContent = () => {
       {/* Why BitSafe Section */}
       <section className="py-20 bg-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Why BitSafe?</h2>
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">Why Choose BitSafe?</h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.1s'}}>
-              <div className="text-3xl mb-4">💰</div>
-              <h3 className="text-lg font-bold text-white mb-3">Transparent Pricing</h3>
-              <p className="text-blue-200 text-sm">No hidden fees. Fair, risk-based premiums.</p>
+              <div className="text-3xl mb-4">🇩🇪</div>
+              <h3 className="text-lg font-bold text-white mb-3">Germany's First</h3>
+              <p className="text-blue-200 text-sm">Leading automated crypto insurance in Germany.</p>
             </div>
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.2s'}}>
-              <div className="text-3xl mb-4">⚡</div>
-              <h3 className="text-lg font-bold text-white mb-3">Instant Coverage</h3>
-              <p className="text-blue-200 text-sm">Get activated immediately. No waiting periods.</p>
+              <div className="text-3xl mb-4">🤖</div>
+              <h3 className="text-lg font-bold text-white mb-3">AI-Powered</h3>
+              <p className="text-blue-200 text-sm">Instant fraud detection and automated payouts.</p>
             </div>
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.3s'}}>
-              <div className="text-3xl mb-4">🏗️</div>
-              <h3 className="text-lg font-bold text-white mb-3">Decentralized Trust</h3>
-              <p className="text-blue-200 text-sm">Built on smart contracts and DAO governance.</p>
+              <div className="text-3xl mb-4">⚡</div>
+              <h3 className="text-lg font-bold text-white mb-3">Lightning Fast</h3>
+              <p className="text-blue-200 text-sm">Claims processed in minutes, not weeks.</p>
             </div>
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 text-center card-hover fade-in" style={{animationDelay: '0.4s'}}>
-              <div className="text-3xl mb-4">👤</div>
-              <h3 className="text-lg font-bold text-white mb-3">Retail Focused</h3>
-              <p className="text-blue-200 text-sm">For individual users, not just institutions.</p>
+              <div className="text-3xl mb-4">🔒</div>
+              <h3 className="text-lg font-bold text-white mb-3">Smart Contracts</h3>
+              <p className="text-blue-200 text-sm">Transparent, automated, fraud-resistant.</p>
             </div>
           </div>
         </div>
