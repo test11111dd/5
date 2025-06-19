@@ -55,7 +55,7 @@ const blogArticles = [
       
       <p><strong>Hour 6:</strong> BitSafe's AI system automatically verified the phishing attack using Chainlink oracles that cross-referenced the malicious contract address with known phishing databases.</p>
       
-      <p><strong>Hour 24:</strong> The DAO governance system reviewed the claim. With clear evidence of a phishing attack and Alex's Pro Plan coverage, the vote passed unanimously.</p>
+      <p><strong>Hour 24:</strong> Our AI governance system automatically approved the claim. With clear evidence of a phishing attack and Alex's Pro Plan coverage, the smart contract triggered instantly.</p>
       
       <p><strong>Hour 48:</strong> Smart contracts automatically transferred $30,000 USDC to Alex's designated recovery wallet.</p>
       
