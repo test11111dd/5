@@ -687,6 +687,7 @@ const MainContent = () => {
               <a href="#plans" className="text-blue-200 hover:text-white transition-colors">Plans</a>
               <a href="#claims" className="text-blue-200 hover:text-white transition-colors">Claims</a>
               <a href="#blog" className="text-blue-200 hover:text-white transition-colors">Blog</a>
+              <a href="/about" className="text-blue-200 hover:text-white transition-colors">About</a>
               <a href="#contact" className="text-blue-200 hover:text-white transition-colors">Contact</a>
             </div>
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
