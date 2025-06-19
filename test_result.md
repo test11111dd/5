@@ -171,7 +171,8 @@ test_plan:
     - "Update CTA buttons to redirect to calculator"
     - "Test button redirect functionality"
     - "Verify smooth scrolling behavior"
-  stuck_tasks: []
+  stuck_tasks:
+    - "Update CTA buttons to redirect to calculator"
   test_all: false
   test_priority: "high_first"
 
