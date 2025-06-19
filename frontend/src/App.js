@@ -1158,7 +1158,7 @@ const MainContent = () => {
                   <path fillRule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-2 2-2-2-2 2-2-2v-2a6 6 0 017.743-5.743L10 6l2-2 2 2 2-2 2 2v2z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-white font-semibold">KYC-Free</p>
+              <p className="text-white font-semibold">German Regulated</p>
             </div>
           </div>
         </div>
