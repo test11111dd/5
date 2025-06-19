@@ -692,7 +692,17 @@ const MainContent = () => {
             </div>
             <button 
               onClick={() => {
-                document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                const calculatorElement = document.getElementById('calculator');
+                if (calculatorElement) {
+                  calculatorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  // Fallback in case scrollIntoView doesn't work
+                  setTimeout(() => {
+                    window.scrollTo({
+                      top: calculatorElement.offsetTop,
+                      behavior: 'smooth'
+                    });
+                  }, 100);
+                }
               }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
             >
