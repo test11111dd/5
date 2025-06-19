@@ -1005,10 +1005,10 @@ const MainContent = () => {
       {/* Claims Process Section */}
       <section id="claims" className="py-20 bg-gradient-to-br from-slate-900 to-blue-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-8 fade-in">Fast, Transparent Claims</h2>
+          <h2 className="text-4xl font-bold text-white mb-8 fade-in">Lightning-Fast AI Claims</h2>
           <p className="text-blue-200 mb-12 max-w-3xl mx-auto fade-in">
-            All claims are reviewed through DAO votes or smart contract triggers using Chainlink oracles and IPFS evidence. 
-            You'll be notified by email and on-chain about your claim status.
+            Our AI system instantly verifies hacks using Chainlink oracles and blockchain data. 
+            Smart contracts automatically pay approved claims within minutes, not weeks.
           </p>
           
           <div className="grid md:grid-cols-4 gap-6">
@@ -1016,46 +1016,46 @@ const MainContent = () => {
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold">1</span>
               </div>
-              <h3 className="font-bold text-white mb-2">Submit Incident</h3>
-              <p className="text-blue-200 text-sm">(via portal or chatbot)</p>
+              <h3 className="font-bold text-white mb-2">Report Incident</h3>
+              <p className="text-blue-200 text-sm">Submit hack details via our portal or AI chatbot</p>
             </div>
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.2s'}}>
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold">2</span>
               </div>
-              <h3 className="font-bold text-white mb-2">Submit Details</h3>
-              <p className="text-blue-200 text-sm">Submit wallet ID + loss details</p>
+              <h3 className="font-bold text-white mb-2">AI Analysis</h3>
+              <p className="text-blue-200 text-sm">AI verifies hack using blockchain data + oracles</p>
             </div>
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.3s'}}>
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold">3</span>
               </div>
-              <h3 className="font-bold text-white mb-2">Verification</h3>
-              <p className="text-blue-200 text-sm">Verification + DAO vote (or smart contract trigger)</p>
+              <h3 className="font-bold text-white mb-2">Smart Contract</h3>
+              <p className="text-blue-200 text-sm">Automated approval triggers payout contract</p>
             </div>
             <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800 card-hover fade-in" style={{animationDelay: '0.4s'}}>
               <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold">4</span>
               </div>
-              <h3 className="font-bold text-white mb-2">Receive Payout</h3>
-              <p className="text-blue-200 text-sm">Receive payout to wallet</p>
+              <h3 className="font-bold text-white mb-2">Instant Payout</h3>
+              <p className="text-blue-200 text-sm">Receive compensation in minutes, not weeks</p>
             </div>
           </div>
           
           <div className="mt-12 bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-6 rounded-xl border border-blue-800 fade-in">
-            <h4 className="text-xl font-bold text-white mb-4">Powered by Blockchain Technology</h4>
+            <h4 className="text-xl font-bold text-white mb-4">Powered by Advanced AI Technology</h4>
             <div className="grid md:grid-cols-3 gap-4 text-blue-200">
+              <div className="flex items-center justify-center">
+                <span className="mr-2">🤖</span>
+                <span>AI Fraud Detection</span>
+              </div>
               <div className="flex items-center justify-center">
                 <span className="mr-2">⛓️</span>
                 <span>Chainlink Oracles</span>
               </div>
               <div className="flex items-center justify-center">
-                <span className="mr-2">📁</span>
-                <span>IPFS Evidence Storage</span>
-              </div>
-              <div className="flex items-center justify-center">
-                <span className="mr-2">🗳️</span>
-                <span>DAO Governance</span>
+                <span className="mr-2">⚡</span>
+                <span>Smart Contract Automation</span>
               </div>
             </div>
           </div>
