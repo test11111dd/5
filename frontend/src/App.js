@@ -850,7 +850,7 @@ const MainContent = () => {
                 </button>
 
                 {quote && (
-                    <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 fade-in">
+                  <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 fade-in">
                     <div className="text-center">
                       <div className={`inline-block px-3 py-1 rounded-full text-sm font-semibold mb-2 ${
                         quote.riskLevel === 'Low' ? 'bg-green-600 text-white risk-low' :
@@ -861,10 +861,25 @@ const MainContent = () => {
                       <p className="text-white font-bold text-lg">
                         AI Premium: €{quote.premium.toFixed(2)}
                       </p>
-                      <p className="text-blue-200 text-sm">
+                      <p className="text-blue-200 text-sm mb-4">
                         for {quote.duration.replace('month', ' month').replace('year', ' year')} 
                         covering €{quote.coverageAmount.toLocaleString()}
                       </p>
+                      
+                      {/* Get Insured Now Button */}
+                      <button 
+                        onClick={() => {
+                          // Scroll to contact section
+                          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white py-4 px-6 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg pulse-green mt-2"
+                      >
+                        🚀 Get Insured Now - €{quote.premium.toFixed(2)}/month
+                      </button>
+                      
+                      <div className="mt-3 text-xs text-blue-300">
+                        ✅ Instant activation • ✅ AI-powered protection • ✅ No paperwork
+                      </div>
                     </div>
                   </div>
                 )}
