@@ -165,9 +165,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Verify AI-focused content updates"
-    - "Test Euro pricing display"
-    - "Verify German market positioning"
+    - "Update CTA buttons to redirect to calculator"
+    - "Test button redirect functionality"
+    - "Verify smooth scrolling behavior"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
