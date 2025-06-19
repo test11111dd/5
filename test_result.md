@@ -162,6 +162,6 @@ test_plan:
 
 agent_communication:
     - agent: "main"
-      message: "Successfully imported BitSafe crypto insurance repository. Backend has basic API endpoints, frontend is a complete crypto insurance website with premium calculator, blog, and contact features. Dependencies installed and ready for enhancements."
+      message: "Successfully transformed BitSafe website from DAO-focused to AI-powered platform. Key changes: Hero section now emphasizes Germany's first AI-powered crypto insurance, pricing in EUR, AI-automated claims process, German testimonials, and updated blog content focusing on AI technology instead of DAO governance."
     - agent: "testing"
       message: "Completed comprehensive testing of the BitSafe crypto insurance backend API. Created and enhanced backend_test.py to test all required endpoints. All tests are passing successfully. The backend API is robust and working correctly with MongoDB integration and proper CORS configuration. The API follows the /api prefix pattern for Kubernetes ingress as required."
