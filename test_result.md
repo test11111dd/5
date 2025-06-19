@@ -145,6 +145,18 @@ frontend:
           agent: "main"
           comment: "Enhanced premium calculator with prominent 'Get Insured Now' button after quote display. Added pulse animation, euro pricing, smooth scroll to contact form, and improved contact section with insurance-focused messaging and process flow."
 
+  - task: "Update CTA buttons to redirect to calculator"
+    implemented: true
+    working: true
+    file: "frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Updated all 'Get Insured Now' buttons and plan selection buttons (Choose Basic, Choose Pro, Choose AI Pro) to redirect users to the calculator section instead of contact form. This improves user flow - users first see their personalized quote before proceeding. The quote button in calculator still goes to contact form for application after quote generation."
+
 metadata:
   created_by: "main_agent"
   version: "1.1"
