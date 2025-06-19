@@ -1422,9 +1422,9 @@ const MainContent = () => {
               </div>
               
               <div className="hidden md:flex space-x-6">
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">Terms of Use</a>
-                <a href="#" className="text-blue-200 hover:text-white transition-colors">DAO Governance</a>
+                <a href="/privacy" className="text-blue-200 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="/impressum" className="text-blue-200 hover:text-white transition-colors">Impressum</a>
+                <a href="/about" className="text-blue-200 hover:text-white transition-colors">About Us</a>
               </div>
             </div>
             
