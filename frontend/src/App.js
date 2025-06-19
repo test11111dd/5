@@ -933,7 +933,12 @@ const MainContent = () => {
                   <span className="text-gray-400">Instant automated claims</span>
                 </li>
               </ul>
-              <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
+              <button 
+                onClick={() => {
+                  document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
                 Choose Basic
               </button>
             </div>
