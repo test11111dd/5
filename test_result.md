@@ -147,15 +147,18 @@ frontend:
 
   - task: "Update CTA buttons to redirect to calculator"
     implemented: true
-    working: true
+    working: false
     file: "frontend/src/App.js"
-    stuck_count: 0
+    stuck_count: 1
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: true
           agent: "main"
           comment: "Updated all 'Get Insured Now' buttons and plan selection buttons (Choose Basic, Choose Pro, Choose AI Pro) to redirect users to the calculator section instead of contact form. This improves user flow - users first see their personalized quote before proceeding. The quote button in calculator still goes to contact form for application after quote generation."
+        - working: false
+          agent: "testing"
+          comment: "Testing revealed mixed results. The plan selection buttons ('Choose Basic', 'Choose Pro', 'Choose AI Pro') correctly scroll to the calculator section. However, the 'Get Insured Now' buttons in the navigation bar and hero section do not scroll to the calculator section as expected. The scrollIntoView functionality appears to be implemented in the code but is not working properly for these buttons."
 
 metadata:
   created_by: "main_agent"
