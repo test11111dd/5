@@ -100,16 +100,16 @@ const blogArticles = [
         <li>High operational costs passed to customers</li>
       </ul>
       
-      <h4>DAO Insurance Advantages:</h4>
+      <h4>AI Insurance Advantages:</h4>
       <ul>
-        <li>Transparent, on-chain voting records</li>
-        <li>Automated processing via smart contracts</li>
-        <li>Community-driven claim validation</li>
-        <li>Immutable audit trails</li>
-        <li>Democratic dispute resolution</li>
+        <li>Instant, automated claim processing</li>
+        <li>24/7 fraud detection and prevention</li>
+        <li>Transparent smart contract execution</li>
+        <li>Immutable blockchain audit trails</li>
+        <li>Predictive risk assessment</li>
       </ul>
       
-      <h3>How BitSafe's DAO Claims Process Works</h3>
+      <h3>How BitSafe's AI Claims Process Works</h3>
       
       <h4>1. Claim Submission</h4>
       <p>Users submit claims through the BitSafe portal or AI chatbot, providing:</p>
