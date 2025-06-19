@@ -694,14 +694,11 @@ const MainContent = () => {
               onClick={() => {
                 const calculatorElement = document.getElementById('calculator');
                 if (calculatorElement) {
-                  calculatorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  // Fallback in case scrollIntoView doesn't work
-                  setTimeout(() => {
-                    window.scrollTo({
-                      top: calculatorElement.offsetTop,
-                      behavior: 'smooth'
-                    });
-                  }, 100);
+                  // Direct scroll to the element's position
+                  window.scrollTo({
+                    top: calculatorElement.offsetTop - 100, // Subtract header height
+                    behavior: 'smooth'
+                  });
                 }
               }}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
