@@ -1150,7 +1150,7 @@ const MainContent = () => {
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-white font-semibold">DAO Governed</p>
+              <p className="text-white font-semibold">Smart Contract Verified</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-2 hover-glow">
