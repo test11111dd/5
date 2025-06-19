@@ -1008,7 +1008,12 @@ const MainContent = () => {
                   <span className="text-blue-200">Multi-chain coverage (ETH, BTC, etc.)</span>
                 </li>
               </ul>
-              <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-colors">
+              <button 
+                onClick={() => {
+                  document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
                 Choose AI Pro
               </button>
             </div>
