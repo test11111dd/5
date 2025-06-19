@@ -721,39 +721,39 @@ const MainContent = () => {
         </div>
       </section>
 
-      {/* How It Works Section - Updated to remove "Connect Wallet" */}
+      {/* How It Works Section - Updated to reflect AI automation */}
       <section id="how-it-works" className="py-20 bg-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">How It Works</h2>
+          <h2 className="text-4xl font-bold text-white text-center mb-16 fade-in">How AI Protection Works</h2>
           
           <div className="grid md:grid-cols-4 gap-8">
             <div className="text-center fade-in" style={{animationDelay: '0.1s'}}>
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
                 <span className="text-xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-3">Select Coverage</h3>
-              <p className="text-blue-200 text-sm">Choose your coverage type and amount.</p>
+              <h3 className="text-lg font-bold text-white mb-3">Buy Coverage</h3>
+              <p className="text-blue-200 text-sm">€10/month insures €10,000 in Bitcoin. Instant activation.</p>
             </div>
             <div className="text-center fade-in" style={{animationDelay: '0.2s'}}>
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
                 <span className="text-xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-3">View Premium</h3>
-              <p className="text-blue-200 text-sm">Get instant transparent pricing.</p>
+              <h3 className="text-lg font-bold text-white mb-3">AI Monitors</h3>
+              <p className="text-blue-200 text-sm">Our AI tracks wallet security and exchange risks 24/7.</p>
             </div>
             <div className="text-center fade-in" style={{animationDelay: '0.3s'}}>
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
                 <span className="text-xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-3">Get Insured</h3>
-              <p className="text-blue-200 text-sm">One-click activation and coverage.</p>
+              <h3 className="text-lg font-bold text-white mb-3">Hack Detected</h3>
+              <p className="text-blue-200 text-sm">Chainlink oracles verify incidents automatically.</p>
             </div>
             <div className="text-center fade-in" style={{animationDelay: '0.4s'}}>
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover-glow">
                 <span className="text-xl font-bold text-white">4</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-3">File Claims</h3>
-              <p className="text-blue-200 text-sm">Easy claims with automated verification.</p>
+              <h3 className="text-lg font-bold text-white mb-3">Auto-Payout</h3>
+              <p className="text-blue-200 text-sm">Smart contracts pay you instantly. No forms, no delays.</p>
             </div>
           </div>
         </div>
