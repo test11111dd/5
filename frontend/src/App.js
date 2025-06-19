@@ -80,9 +80,9 @@ const blogArticles = [
   },
   {
     id: 3,
-    title: "Understanding DAO Insurance Claims",
+    title: "Understanding AI-Powered Insurance Claims",
     date: "March 10, 2025",
-    excerpt: "Deep dive into how decentralized autonomous organizations are revolutionizing insurance claims processing through transparency and automation.",
+    excerpt: "Deep dive into how artificial intelligence is revolutionizing insurance claims processing through automation and smart contract integration.",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwzfHxjcnlwdG8lMjBzZWN1cml0eXxlbnwwfHx8fDE3NDgyNjc0MzV8MA&ixlib=rb-4.1.0&q=85",
     content: `
       <h2>The Revolution of DAO-Governed Insurance Claims</h2>
