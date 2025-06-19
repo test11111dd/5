@@ -1306,8 +1306,36 @@ const MainContent = () => {
             </div>
             
             <div className="space-y-8 fade-in">
+              {/* Insurance Process Info */}
+              <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800">
+                <h3 className="text-xl font-bold text-white mb-4">🚀 What Happens Next?</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold text-white">1</div>
+                    <div>
+                      <p className="text-white font-semibold">Instant Review</p>
+                      <p className="text-blue-200 text-sm">Our AI analyzes your application in minutes</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold text-white">2</div>
+                    <div>
+                      <p className="text-white font-semibold">Smart Contract Setup</p>
+                      <p className="text-blue-200 text-sm">We deploy your personalized insurance contract</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center mr-3 mt-0.5 text-xs font-bold text-white">3</div>
+                    <div>
+                      <p className="text-white font-semibold">AI Monitoring Starts</p>
+                      <p className="text-blue-200 text-sm">24/7 protection begins immediately</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
               <div>
-                <h3 className="text-xl font-bold text-white mb-6">Need help or custom coverage?</h3>
+                <h3 className="text-xl font-bold text-white mb-6">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
@@ -1380,12 +1408,12 @@ const MainContent = () => {
                 </div>
               </div>
               
-              <div className="bg-blue-900/30 p-6 rounded-xl border border-blue-800">
-                <h4 className="text-lg font-bold text-white mb-4">Built by Crypto Natives, for Crypto Natives</h4>
+              <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 p-6 rounded-xl border border-blue-800">
+                <h4 className="text-lg font-bold text-white mb-4">🤖 AI-Powered Protection</h4>
                 <p className="text-blue-200">
-                  We're a decentralized team of developers, auditors, and insurance experts creating the first 
-                  user-friendly, DAO-powered wallet insurance protocol. BitSafe aims to bring Web2-level protection 
-                  to Web3 users — without compromising your privacy or sovereignty.
+                  Our advanced AI system monitors your crypto 24/7, providing instant fraud detection 
+                  and automated claim processing. Experience the future of crypto insurance with 
+                  Germany's first fully automated platform.
                 </p>
               </div>
             </div>
