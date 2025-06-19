@@ -850,7 +850,7 @@ const MainContent = () => {
                 </button>
 
                 {quote && (
-                  <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 fade-in">
+                    <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-600 fade-in">
                     <div className="text-center">
                       <div className={`inline-block px-3 py-1 rounded-full text-sm font-semibold mb-2 ${
                         quote.riskLevel === 'Low' ? 'bg-green-600 text-white risk-low' :
@@ -859,11 +859,11 @@ const MainContent = () => {
                         {quote.riskLevel} Risk
                       </div>
                       <p className="text-white font-bold text-lg">
-                        Estimated Premium: ${quote.premium.toFixed(2)}
+                        AI Premium: €{quote.premium.toFixed(2)}
                       </p>
                       <p className="text-blue-200 text-sm">
                         for {quote.duration.replace('month', ' month').replace('year', ' year')} 
-                        covering ${quote.coverageAmount.toLocaleString()}
+                        covering €{quote.coverageAmount.toLocaleString()}
                       </p>
                     </div>
                   </div>
