@@ -1291,7 +1291,7 @@ const MainContent = () => {
                     <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
                       <span className="text-white font-bold text-sm">📍</span>
                     </div>
-                    <span className="text-blue-200">Based in Berlin, Germany</span>
+                    <span className="text-blue-200">Based in Bielefeld, Germany</span>
                   </div>
                 </div>
                 
