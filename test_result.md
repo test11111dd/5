@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Import repository https://github.com/test11111dd/1 for further modifications and enhancements"
+user_problem_statement: "Transform BitSafe website from DAO-focused to AI-powered crypto insurance platform for Germany"
 
 backend:
   - task: "Basic FastAPI Backend Setup"
