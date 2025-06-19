@@ -75,7 +75,7 @@ const blogArticles = [
         <li>The power of blockchain transparency in insurance claims</li>
       </ul>
       
-      <p><em>"BitSafe didn't just recover my funds – they restored my faith in the crypto ecosystem. The DAO governance model ensured I was treated fairly, and the smart contract automation made the payout instant once approved."</em> - Alex, BitSafe user</p>
+      <p><em>"BitSafe didn't just recover my funds – they restored my faith in the crypto ecosystem. The AI automation ensured I was treated fairly, and the smart contract automation made the payout instant once approved."</em> - Alex, BitSafe user</p>
     `
   },
   {
