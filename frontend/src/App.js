@@ -38,7 +38,7 @@ const blogArticles = [
     id: 2,
     title: "Case Study: $30k Phishing Hack Recovered with BitSafe",
     date: "March 12, 2025",
-    excerpt: "Real story of how our DAO-governed claims process helped a user recover from a sophisticated phishing attack within 48 hours.",
+    excerpt: "Real story of how our AI-powered claims system helped a user recover from a sophisticated phishing attack within 48 hours.",
     image: "https://images.pexels.com/photos/2022650/pexels-photo-2022650.jpeg",
     content: `
       <h2>How BitSafe Recovered $30,000 from a Sophisticated Phishing Attack</h2>
