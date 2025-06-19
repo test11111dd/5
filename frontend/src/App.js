@@ -946,34 +946,34 @@ const MainContent = () => {
               </button>
             </div>
 
-            {/* DAO Vault */}
+            {/* AI Pro Plan - Updated from DAO Vault */}
             <div className="bg-slate-700/50 p-8 rounded-2xl border border-purple-800 relative card-hover fade-in" style={{animationDelay: '0.3s'}}>
               <div className="text-center mb-6">
-                <div className="text-3xl mb-2">⚡</div>
-                <h3 className="text-2xl font-bold text-white">DAO Vault</h3>
-                <div className="text-2xl font-bold text-purple-400 mt-2">10% of coverage/year</div>
-                <p className="text-blue-200 text-sm mt-2">Advanced, decentralized insurance backed by DAO governance.</p>
+                <div className="text-3xl mb-2">🤖</div>
+                <h3 className="text-2xl font-bold text-white">AI Pro</h3>
+                <div className="text-2xl font-bold text-purple-400 mt-2">€50/month</div>
+                <p className="text-blue-200 text-sm mt-2">Full AI automation with smart contract claims processing.</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Full coverage up to $100,000</span>
+                  <span className="text-blue-200">Coverage up to €100,000</span>
                 </li>
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Custom policy options (NFTs, DeFi, Layer 2s)</span>
+                  <span className="text-blue-200">AI risk monitoring & alerts</span>
                 </li>
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Governance voting rights</span>
+                  <span className="text-blue-200">Instant smart contract payouts</span>
                 </li>
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Priority smart contract monitoring</span>
+                  <span className="text-blue-200">Multi-chain coverage (ETH, BTC, etc.)</span>
                 </li>
               </ul>
               <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition-colors">
-                Choose DAO Vault
+                Choose AI Pro
               </button>
             </div>
           </div>
