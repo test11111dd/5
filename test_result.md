@@ -147,14 +147,15 @@ frontend:
 
 metadata:
   created_by: "main_agent"
-  version: "1.0"
-  test_sequence: 1
+  version: "1.1"
+  test_sequence: 0
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Verify backend API endpoints"
-    - "Test frontend functionality"
+    - "Verify AI-focused content updates"
+    - "Test Euro pricing display"
+    - "Verify German market positioning"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
