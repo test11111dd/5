@@ -886,17 +886,17 @@ const MainContent = () => {
               <div className="text-center mb-6">
                 <div className="text-3xl mb-2">🔹</div>
                 <h3 className="text-2xl font-bold text-white">Basic Plan</h3>
-                <div className="text-3xl font-bold text-green-400 mt-2">$10/month</div>
-                <p className="text-blue-200 text-sm mt-2">Perfect for entry-level users and small wallets.</p>
+                <div className="text-3xl font-bold text-green-400 mt-2">€10/month</div>
+                <p className="text-blue-200 text-sm mt-2">Essential protection for crypto beginners.</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Wallet loss up to $5,000</span>
+                  <span className="text-blue-200">Coverage up to €5,000</span>
                 </li>
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Scam detection alerts</span>
+                  <span className="text-blue-200">AI scam detection alerts</span>
                 </li>
                 <li className="flex items-center text-red-400">
                   <span className="mr-2">✖</span>
@@ -904,7 +904,7 @@ const MainContent = () => {
                 </li>
                 <li className="flex items-center text-red-400">
                   <span className="mr-2">✖</span>
-                  <span className="text-gray-400">Priority claims processing</span>
+                  <span className="text-gray-400">Instant automated claims</span>
                 </li>
               </ul>
               <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
@@ -915,30 +915,30 @@ const MainContent = () => {
             {/* Pro Plan */}
             <div className="bg-slate-700/50 p-8 rounded-2xl border-2 border-blue-500 relative card-hover fade-in" style={{animationDelay: '0.2s'}}>
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">POPULAR</span>
+                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">BELIEBT</span>
               </div>
               <div className="text-center mb-6">
                 <div className="text-3xl mb-2">🔷</div>
                 <h3 className="text-2xl font-bold text-white">Pro Plan</h3>
-                <div className="text-3xl font-bold text-blue-400 mt-2">$25/month</div>
-                <p className="text-blue-200 text-sm mt-2">Ideal for active traders and diversified portfolios.</p>
+                <div className="text-3xl font-bold text-blue-400 mt-2">€25/month</div>
+                <p className="text-blue-200 text-sm mt-2">Perfect for active German crypto traders.</p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Wallet loss up to $25,000</span>
+                  <span className="text-blue-200">Coverage up to €25,000</span>
                 </li>
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Phishing & scam protection</span>
+                  <span className="text-blue-200">AI-powered phishing protection</span>
                 </li>
                 <li className="flex items-center text-green-400">
                   <span className="mr-2">✔</span>
-                  <span className="text-blue-200">Smart contract audit support</span>
+                  <span className="text-blue-200">Smart contract audit alerts</span>
                 </li>
                 <li className="flex items-center text-red-400">
                   <span className="mr-2">✖</span>
-                  <span className="text-gray-400">DAO voting access</span>
+                  <span className="text-gray-400">Multi-chain coverage</span>
                 </li>
               </ul>
               <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">
