@@ -1098,14 +1098,14 @@ const MainContent = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-slate-800/50 p-6 rounded-xl border border-blue-800 testimonial-card card-hover fade-in" style={{animationDelay: '0.1s'}}>
-              <p className="text-blue-200 mb-4">"Finally, insurance I trust for my MetaMask!"</p>
+              <p className="text-blue-200 mb-4">"My €15k was stolen, AI detected it, and I got paid back in 20 minutes!"</p>
               <div className="flex items-center">
                 <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-white font-bold">A</span>
+                  <span className="text-white font-bold">M</span>
                 </div>
                 <div>
-                  <p className="text-white font-semibold">Alex Chen</p>
-                  <p className="text-blue-300 text-sm">DeFi Trader</p>
+                  <p className="text-white font-semibold">Marcus Weber</p>
+                  <p className="text-blue-300 text-sm">Bitcoin Investor, Berlin</p>
                 </div>
               </div>
             </div>
