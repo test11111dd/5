@@ -85,11 +85,11 @@ const blogArticles = [
     excerpt: "Deep dive into how artificial intelligence is revolutionizing insurance claims processing through automation and smart contract integration.",
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwzfHxjcnlwdG8lMjBzZWN1cml0eXxlbnwwfHx8fDE3NDgyNjc0MzV8MA&ixlib=rb-4.1.0&q=85",
     content: `
-      <h2>The Revolution of DAO-Governed Insurance Claims</h2>
+      <h2>The Revolution of AI-Powered Insurance Claims</h2>
       
-      <p>Decentralized Autonomous Organizations (DAOs) are transforming how insurance claims are processed, bringing unprecedented transparency, fairness, and efficiency to an industry traditionally plagued by opacity and bureaucratic delays.</p>
+      <p>Artificial Intelligence and smart contracts are transforming how insurance claims are processed, bringing unprecedented speed, accuracy, and efficiency to an industry traditionally plagued by slow manual processes and bureaucratic delays.</p>
       
-      <h3>Traditional Insurance vs. DAO Insurance</h3>
+      <h3>Traditional Insurance vs. AI Insurance</h3>
       
       <h4>Traditional Insurance Problems:</h4>
       <ul>
