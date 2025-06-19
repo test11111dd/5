@@ -972,7 +972,12 @@ const MainContent = () => {
                   <span className="text-gray-400">Multi-chain coverage</span>
                 </li>
               </ul>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">
+              <button 
+                onClick={() => {
+                  document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
                 Choose Pro
               </button>
             </div>
