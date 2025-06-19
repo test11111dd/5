@@ -128,13 +128,13 @@ const blogArticles = [
         <li>Wallet activity patterns</li>
       </ul>
       
-      <h4>3. DAO Review Process</h4>
-      <p>For claims requiring human judgment:</p>
+      <h4>3. AI Analysis & Approval</h4>
+      <p>For claims requiring verification:</p>
       <ul>
-        <li>DAO members review anonymized case data</li>
-        <li>Voting weighted by stake and reputation</li>
-        <li>72-hour review period for complex cases</li>
-        <li>All votes recorded on-chain for transparency</li>
+        <li>AI analyzes blockchain data and patterns</li>
+        <li>Machine learning models detect fraud indicators</li>
+        <li>Instant approval for verified legitimate claims</li>
+        <li>All decisions recorded on-chain for transparency</li>
       </ul>
       
       <h4>4. Automated Payout</h4>
