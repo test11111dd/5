@@ -3,7 +3,7 @@ import sys
 import json
 
 class BitSafeAPITester:
-    def __init__(self, base_url="https://d6b0c07a-fe05-47c2-912c-c95aec9873e8.preview.emergentagent.com"):
+    def __init__(self, base_url="https://ae80a886-007b-48f8-897d-b5518c730258.preview.emergentagent.com"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0
